@@ -27,7 +27,6 @@ app.post('/', (req, res) => {
 
 app.post('/register', async (req,res)=>{
     const data = req.body;
-    console.log(data);
     res.json({name: data.name, email: data.email, password: data.password});
 })
 
