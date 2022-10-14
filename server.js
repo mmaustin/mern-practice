@@ -25,6 +25,12 @@ app.post('/', (req, res) => {
     res.json(sentence);
 })
 
+app.post('/register', async (req,res)=>{
+    const data = req.body;
+    console.log(data);
+    res.json({name: data.name, email: data.email, password: data.password});
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
