@@ -3,19 +3,43 @@ const app = express();
 import dotenv from 'dotenv';
 dotenv.config();
 
+import connectDB from './db/connect.js';
 
+import authRouter from './routes/authRoutes.js';
+
+import notFoundMiddleware from './middleware/not-found.js';
+import errorHandlerMiddleware from './middleware/error-handler.js';
+
+app.use(express.json());
+
+app.use('/api/v1/auth', authRouter);
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
+
+const port = process.env.PORT || 5001
+
+const start = async () => {
+    try {
+        await connectDB(process.env.MONGO_URL)
+        app.listen(port, () => {
+            console.log(`Server is listening on port ${port}...`)
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+start();
+
+
+/*
 const requestTime = (req, res, next) => {
     req.requestTime = Date.now()
     next()
 }
 
-import connectDB from './db/connect.js';
-
-import notFoundMiddleware from './middleware/not-found.js';
-import errorHandlerMiddleware from './middleware/error-handler.js';
-
 app.use(requestTime)
-app.use(express.json());
 
 app.get('/', (req, res) => {
     //let responseText = 'Hello World!<br>'
@@ -37,20 +61,4 @@ app.post('/register', async (req,res)=>{
     res.json({name: data.name, email: data.email, password: data.password});
 })
 
-app.use(notFoundMiddleware);
-app.use(errorHandlerMiddleware);
-
-const port = process.env.PORT || 5001
-
-const start = async () => {
-    try {
-        await connectDB(process.env.MONGO_URL)
-        app.listen(port, () => {
-          console.log(`Server is listening on port ${port}...`)
-        })
-      } catch (error) {
-        console.log(error)
-      }
-}
-
-start();
+*/
