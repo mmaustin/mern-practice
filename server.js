@@ -1,11 +1,15 @@
 import express from 'express';
 const app = express();
+
 const port = 5001;
 
 const requestTime = (req, res, next) => {
     req.requestTime = Date.now()
     next()
 }
+
+import notFoundMiddleware from './middleware/not-found.js';
+import errorHandlerMiddleware from './middleware/error-handler.js';
   
 app.use(requestTime)
 app.use(express.json());
@@ -29,6 +33,9 @@ app.post('/register', async (req,res)=>{
     const data = req.body;
     res.json({name: data.name, email: data.email, password: data.password});
 })
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
