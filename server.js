@@ -3,7 +3,7 @@ const app = express();
 import dotenv from 'dotenv';
 dotenv.config();
 
-const port = 5001;
+const port = process.env.PORT || 5001
 
 const requestTime = (req, res, next) => {
     req.requestTime = Date.now()
