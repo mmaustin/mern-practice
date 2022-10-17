@@ -3,16 +3,17 @@ const app = express();
 import dotenv from 'dotenv';
 dotenv.config();
 
-const port = process.env.PORT || 5001
 
 const requestTime = (req, res, next) => {
     req.requestTime = Date.now()
     next()
 }
 
+import connectDB from './db/connect.js';
+
 import notFoundMiddleware from './middleware/not-found.js';
 import errorHandlerMiddleware from './middleware/error-handler.js';
-  
+
 app.use(requestTime)
 app.use(express.json());
 
@@ -39,6 +40,15 @@ app.post('/register', async (req,res)=>{
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+const port = process.env.PORT || 5001
+
+app.listen(port, async () => {
+    try {
+        await connectDB(process.env.MONGO_URL)
+        app.listen(port, () => {
+          console.log(`Server is listening on port ${port}...`)
+        })
+      } catch (error) {
+        console.log(error)
+      }
 })
