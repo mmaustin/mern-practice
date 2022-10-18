@@ -25,14 +25,23 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
             <h3>Login</h3>
             <div>
-                <label htmlFor="name">
-                    name
-                </label>
-                <input
+                <FormRow
                     type='text'
                     name='name'
                     value={values.name}
-                    onChange={handleChange}
+                    handleChange={handleChange}
+                />
+                <FormRow
+                    type='text'
+                    name='email'
+                    value={values.email}
+                    handleChange={handleChange}
+                />
+                <FormRow
+                    type='text'
+                    name='password'
+                    value={values.password}
+                    handleChange={handleChange}
                 />
             </div>
             <button type="submit">Submit</button>
