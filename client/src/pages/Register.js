@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react';
-import { FormRow } from '../components';
+import { FormRow, Alert } from '../components';
 
 const intialState = {
     name: '',
     email: '',
     password: '',
-    isRegistered: true
+    isRegistered: true,
+    showAlert: true
 }
 
 const Register = () => {
@@ -24,6 +25,7 @@ const Register = () => {
     <>
         <form onSubmit={handleSubmit}>
             <h3>Login</h3>
+            {values.showAlert && <Alert/>}
             <div>
                 <FormRow
                     type='text'

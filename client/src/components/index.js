@@ -1,5 +1,7 @@
+import Alert from "./Alert";
 import FormRow from "./FormRow";
 
 export {
-    FormRow
+    FormRow,
+    Alert
 }
