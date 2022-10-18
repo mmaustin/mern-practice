@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import { FormRow } from '../components';
 
 const intialState = {
     name: '',
@@ -11,7 +12,7 @@ const Register = () => {
     const [values, setValues] = useState(intialState);
 
     const handleChange = e => {
-        console.log(e.target);
+        console.log(e.target.value);
     }
 
     const handleSubmit = e => {
@@ -34,6 +35,7 @@ const Register = () => {
                     onChange={handleChange}
                 />
             </div>
+            <button type="submit">Submit</button>
         </form>
     </>
   )
