@@ -20,6 +20,7 @@ const AppProvider = ({children}) => {
 
     const displayAlert = () => {
         dispatch({ type: DISPLAY_ALERT })
+        clearAlert();
     }
     
     const clearAlert = () => {
