@@ -1,8 +1,10 @@
 import React from 'react'
+import { useAppContext } from '../context/appContext'
 
 const Alert = () => {
+  const {alertText} = useAppContext();
   return (
-    <div>Alert Is Active!</div>
+    <div>{alertText}</div>
   )
 }
 

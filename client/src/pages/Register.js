@@ -12,19 +12,24 @@ const intialState = {
 const Register = () => {
     const [values, setValues] = useState(intialState);
 
-    const {isLoading, showAlert} = useAppContext();
+    const {isLoading, showAlert, displayAlert} = useAppContext();
 
     const toggleMember = () => {
         setValues({...values, isMember: !values.isMember})
     }
 
-    const handleChange = e => {
-        console.log(e.target.value);
-    }
+    const handleChange = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value })
+      }
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(e.target);
+        const { name, email, password, isMember } = values
+        if (!email || !password || (!isMember && !name)) {
+          displayAlert()
+          return
+        }
+        console.log(values);
     }
 
   return (
@@ -40,13 +45,13 @@ const Register = () => {
                     handleChange={handleChange}
                 />)}
                 <FormRow
-                    type='text'
+                    type='email'
                     name='email'
                     value={values.email}
                     handleChange={handleChange}
                 />
                 <FormRow
-                    type='text'
+                    type='password'
                     name='password'
                     value={values.password}
                     handleChange={handleChange}
