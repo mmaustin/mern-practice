@@ -1,7 +1,8 @@
 import React, {useReducer, useContext} from 'react';
 import reducer from './reducer';
 import {
-    DISPLAY_ALERT
+    DISPLAY_ALERT,
+    CLEAR_ALERT
 } from './actions'
 
 const initialState ={
@@ -19,10 +20,16 @@ const AppProvider = ({children}) => {
 
     const displayAlert = () => {
         dispatch({ type: DISPLAY_ALERT })
-      }    
+    }
+    
+    const clearAlert = () => {
+        setTimeout(() => {
+          dispatch({ type: CLEAR_ALERT })
+        }, 3000)
+    }
 
     return(
-        <AppContext.Provider value={{...state, displayAlert}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, displayAlert, clearAlert}}>{children}</AppContext.Provider>
     )
 }
 
