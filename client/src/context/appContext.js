@@ -1,12 +1,14 @@
 import React, {useReducer, useContext} from 'react';
 import reducer from './reducer';
 import {
-    ADD_NUMBER
+    
 } from './actions'
 
 const initialState ={
-    isPresent: false,
-    numberIs: 5
+    isLoading: false,
+    showAlert: false,
+    alertText: '',
+    alertType: '',
 }
 
 const AppContext = React.createContext();
