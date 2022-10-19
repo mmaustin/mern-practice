@@ -28,8 +28,7 @@ const Register = () => {
   return (
     <>
         <form onSubmit={handleSubmit}>
-            <h3>Login</h3>
-            {values.isMember ? 'Login' : 'Register'}
+            <h3>{values.isMember ? 'Login' : 'Register'}</h3>
             {values.showAlert && <Alert/>}
             <div>
                 {!values.isMember && (<FormRow
@@ -53,6 +52,7 @@ const Register = () => {
             </div>
             <button type="submit">Submit</button>
             <p>
+                {values.isMember ? 'Not a member yet?' : 'Already a member?'}
                 <button type='button' onClick={toggleMember} style={{color: 'blue', backgroundColor: 'white', border: 'none'}}>
                     {values.isMember ? 'Register' : 'Login'}
                 </button>

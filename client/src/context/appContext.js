@@ -15,12 +15,10 @@ const AppProvider = ({children}) => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const addNumber = () =>{
-        dispatch({type: ADD_NUMBER})
-    }
+    
 
     return(
-        <AppContext.Provider value={{...state, addNumber}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state}}>{children}</AppContext.Provider>
     )
 }
 
