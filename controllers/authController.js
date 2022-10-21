@@ -13,9 +13,11 @@ const register = async (req, res) => {
     if (userAlreadyExists) {
       throw new BadRequestError('Email already in use')
     }
+    //select:false on password in the model is overwritten when we use create and included the password**
     const user = await User.create({ name, email, password })
   
     const token = user.createJWT()
+    //** thus we return a user object and leave the password out
     res.status(StatusCodes.CREATED).json({
       user: {
         name: user.name,
