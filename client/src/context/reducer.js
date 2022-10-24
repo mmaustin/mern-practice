@@ -31,12 +31,16 @@ const reducer = (state, action) => {
     if(action.type === REGISTER_USER_SUCCESS){
       return {
         ...state,
+        isLoading: false,
+        showAlert: true,
         user: action.payload.user,
-        token: action.payload.token
+        token: action.payload.token,
+        alertType: 'success',
+        alertText: 'User Created, redirecting . . . '
       }
     }
     if(action.type === REGISTER_USER_ERROR){
-      return {...state, isLoading: false};
+      return {...state, isLoading: false, showAlert: true};
     }    
 
     throw new Error(`no such action : ${action.type}`)   
