@@ -2,7 +2,10 @@ import React, {useReducer, useContext} from 'react';
 import reducer from './reducer';
 import {
     DISPLAY_ALERT,
-    CLEAR_ALERT
+    CLEAR_ALERT,
+    REGISTER_USER_BEGIN,
+    REGISTER_USER_SUCCESS,
+    REGISTER_USER_ERROR
 } from './actions'
 
 const initialState ={
@@ -27,6 +30,10 @@ const AppProvider = ({children}) => {
         setTimeout(() => {
           dispatch({ type: CLEAR_ALERT })
         }, 3000)
+    }
+
+    const registerUser = async () => {
+        dispatch({type: REGISTER_USER_BEGIN});
     }
 
     return(
