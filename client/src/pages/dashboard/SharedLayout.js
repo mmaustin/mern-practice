@@ -1,11 +1,14 @@
-import {Outlet} from 'react-router-dom'
+import {Outlet, Link} from 'react-router-dom'
 
 const SharedLayout = () => {
 
 
   return (
     <>
-        <h3>shared layout</h3>
+        <nav>
+          <Link to='all-messages'>All Messages</Link>
+          <Link to='add-message'>Add Message</Link>
+        </nav>
         <Outlet/>
     </>
   )

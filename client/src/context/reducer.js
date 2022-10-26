@@ -43,7 +43,7 @@ const reducer = (state, action) => {
       }
     }
     if(action.type === REGISTER_USER_ERROR){
-      return {...state, isLoading: false, showAlert: true};
+      return {...state, isLoading: false, showAlert: true, alertText: action.payload.msg};
     }   
 
     if(action.type === LOGIN_USER_BEGIN){
@@ -61,7 +61,7 @@ const reducer = (state, action) => {
       }
     }
     if(action.type === LOGIN_USER_ERROR){
-      return {...state, isLoading: false, showAlert: true};
+      return {...state, isLoading: false, showAlert: true, alertText: action.payload.msg};
     }    
 
     throw new Error(`no such action : ${action.type}`)   
