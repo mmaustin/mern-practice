@@ -15,7 +15,7 @@ import errorHandlerMiddleware from './middleware/error-handler.js';
 
 if (process.env.NODE_ENV !== 'production') {
     app.use(morgan('dev'))
-  }
+}
 
 app.use(express.json());
 
