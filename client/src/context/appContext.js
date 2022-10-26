@@ -68,7 +68,7 @@ const AppProvider = ({children}) => {
                 payload: {msg: error.response.data.msg}
             });
         }
-
+        clearAlert();
     }
 
     const loginUser = async (currentUser) => {
@@ -87,11 +87,11 @@ const AppProvider = ({children}) => {
                 payload: {msg: error.response.data.msg}
             });
         }
-
+        clearAlert();
     }
 
     return(
-        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser}}>{children}</AppContext.Provider>
     )
 }
 

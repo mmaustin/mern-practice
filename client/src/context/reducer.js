@@ -44,6 +44,24 @@ const reducer = (state, action) => {
     }
     if(action.type === REGISTER_USER_ERROR){
       return {...state, isLoading: false, showAlert: true};
+    }   
+
+    if(action.type === LOGIN_USER_BEGIN){
+      return {...state, isLoading: true};
+    }
+    if(action.type === LOGIN_USER_SUCCESS){
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        user: action.payload.user,
+        token: action.payload.token,
+        alertType: 'success',
+        alertText: 'User logged in, redirecting . . . '
+      }
+    }
+    if(action.type === LOGIN_USER_ERROR){
+      return {...state, isLoading: false, showAlert: true};
     }    
 
     throw new Error(`no such action : ${action.type}`)   

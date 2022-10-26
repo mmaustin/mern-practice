@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import { FormRow, Alert } from '../components';
 import { useAppContext } from '../context/appContext';
+import {useNavigate} from 'react-router-dom'
 
 const intialState = {
     name: '',
@@ -10,9 +11,10 @@ const intialState = {
 }
 
 const Register = () => {
+    const navigate = useNavigate();
     const [values, setValues] = useState(intialState);
 
-    const {isLoading, showAlert, displayAlert, registerUser} = useAppContext();
+    const {user, isLoading, showAlert, displayAlert, registerUser, loginUser} = useAppContext();
 
     const toggleMember = () => {
         setValues({...values, isMember: !values.isMember})
@@ -31,11 +33,19 @@ const Register = () => {
         }
         const currentUser = {name, email, password};
         if(isMember){
-            console.log('already a member');
+            loginUser(currentUser);
         } else {
             registerUser(currentUser);
         }
     }
+
+    useEffect(() => {
+        if (user) {
+          setTimeout(() => {
+            navigate('/')
+          }, 3000)
+        }
+      }, [user, navigate])    
 
   return (
     <>
