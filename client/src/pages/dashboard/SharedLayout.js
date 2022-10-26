@@ -6,7 +6,10 @@ const SharedLayout = () => {
   return (
     <>
         <nav>
-          <Link to='all-messages'>All Messages</Link>
+          <Link to='/'>All Messages</Link>
+          <div>
+            
+          </div>
           <Link to='add-message'>Add Message</Link>
         </nav>
         <Outlet/>
