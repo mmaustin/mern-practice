@@ -1,6 +1,7 @@
 import {Outlet, Link} from 'react-router-dom';
 import {useMediaQuery} from 'react-responsive';
 import styled from 'styled-components';
+import Navbar from '../../components/Navbar';
 
 const Main = styled.main`
   display: flex;
@@ -27,7 +28,7 @@ const SharedLayout = () => {
         <Main>
           {isTesting ? <BigSideBar><Link to='add-message'>Add Message</Link><Link to='/'>All Messages</Link></BigSideBar> : <div>Small Side Bar</div>}
           <div>
-            <div>This Will Be A NavBar Component</div>
+            <Navbar/>
             <div>
               <Outlet/>
             </div>
