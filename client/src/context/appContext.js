@@ -105,4 +105,4 @@ const useAppContext = () => {
     return useContext(AppContext);
 }
 
-export {AppProvider, useAppContext};
+export {AppProvider, useAppContext, initialState};

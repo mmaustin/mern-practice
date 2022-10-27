@@ -13,12 +13,14 @@ const Navbar = () => {
 }
 
 const Wrapper = styled.div`
+
+    background-color: white;
     width: 100%;
     height: 200px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    flex-flow: wrap;
+    flex-flow: row;
     border-bottom: 1px solid blue;
 `
 

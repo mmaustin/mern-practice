@@ -4,18 +4,27 @@ import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 
 const Main = styled.main`
-  display: flex;
-  flex-flow: wrap;
-  height: 100%;
-  width: 100%;
+height: 100%;
+width:100%;
+display: flex;
+/* justify-content: flex-start;
+align-items: center;
+flex-flow: row wrap; */
+
+.archer{
+  border-right: 1px solid grey;
+  width: 20%;
+  height: 400px;
+}
 `
 
 const BigSideBar = styled.div`
+  height: 100%;
+  background: aliceblue;
   display: flex;
+  justify-content: center;
   align-items: center;
-  height: auto;
-  width: 200px;
-  background: lightblue;
+  flex-flow: column; 
 `
 
 const SharedLayout = () => {
@@ -27,7 +36,9 @@ const SharedLayout = () => {
   return (
     
         <Main>
-          {isTesting ? <BigSideBar><Link to='add-message'>Add Message</Link><Link to='/'>All Messages</Link></BigSideBar> : <div>Small Side Bar</div>}
+          <div className='archer'>
+            {isTesting ? <BigSideBar><Link to='add-message'>Add Message</Link><Link to='/'>All Messages</Link></BigSideBar> : <div>Small Side Bar</div>}
+          </div>
           <NavCon>
             <Navbar/>
             <div>
@@ -40,7 +51,12 @@ const SharedLayout = () => {
 }
 
 const NavCon = styled.div`
-  width: 100%;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: column;  
 `
 
 export default SharedLayout
