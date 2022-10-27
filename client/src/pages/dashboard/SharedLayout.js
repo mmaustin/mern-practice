@@ -7,6 +7,7 @@ const Main = styled.main`
   display: flex;
   flex-flow: wrap;
   height: 100%;
+  width: 100%;
 `
 
 const BigSideBar = styled.div`
@@ -27,15 +28,19 @@ const SharedLayout = () => {
     
         <Main>
           {isTesting ? <BigSideBar><Link to='add-message'>Add Message</Link><Link to='/'>All Messages</Link></BigSideBar> : <div>Small Side Bar</div>}
-          <div>
+          <NavCon>
             <Navbar/>
             <div>
               <Outlet/>
             </div>
-          </div>
+          </NavCon>
         </Main>
     
   )
 }
+
+const NavCon = styled.div`
+  width: 100%;
+`
 
 export default SharedLayout
