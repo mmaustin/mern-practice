@@ -5,6 +5,8 @@ dotenv.config();
 import 'express-async-errors'
 import morgan from 'morgan'
 
+import testMid from './middleware/test-middleware.js';
+
 import connectDB from './db/connect.js';
 
 import authRouter from './routes/authRoutes.js';
@@ -18,6 +20,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.use(express.json());
+app.use(testMid);
+
+app.get('/test', (req, res)=>{
+    res.send(req.addFour);
+})
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/events', eventRouter);
