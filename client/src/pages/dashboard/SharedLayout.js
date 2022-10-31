@@ -1,7 +1,8 @@
-import {Outlet, Link} from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import {useMediaQuery} from 'react-responsive';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
+import { BigSidebar } from '../../components';
 
 const Main = styled.main`
 height: 100%;
@@ -37,7 +38,7 @@ const SharedLayout = () => {
     
         <Main>
           <div className='archer'>
-            {isTesting ? <BigSideBar><Link to='/'>All Messages</Link><Link to='add-message'>Add Message</Link><Link to='profile'>Profile</Link></BigSideBar> : <div>Small Side Bar</div>}
+            {isTesting ? <BigSideBar><BigSidebar/></BigSideBar> : <div>Small Side Bar</div>}
           </div>
           <NavCon>
             <Navbar/>
