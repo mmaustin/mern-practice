@@ -37,7 +37,7 @@ const SharedLayout = () => {
     
         <Main>
           <div className='archer'>
-            {isTesting ? <BigSideBar><Link to='add-message'>Add Message</Link><Link to='/'>All Messages</Link></BigSideBar> : <div>Small Side Bar</div>}
+            {isTesting ? <BigSideBar><Link to='/'>All Messages</Link><Link to='add-message'>Add Message</Link><Link to='profile'>Profile</Link></BigSideBar> : <div>Small Side Bar</div>}
           </div>
           <NavCon>
             <Navbar/>
