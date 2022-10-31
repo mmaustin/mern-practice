@@ -46,4 +46,8 @@ const login = async (req, res) => {
   res.status(StatusCodes.OK).json({ user, token})
 }
 
-export {register, login};
+const updateUser = async (req, res) => {
+  res.send('update user');
+}
+
+export {register, login, updateUser};
