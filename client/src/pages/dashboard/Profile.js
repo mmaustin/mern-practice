@@ -11,12 +11,14 @@ const Profile = () => {
   
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!name || !email) {
-      displayAlert()
-      return
-    }
-    updateUser({ name, email})
+    e.preventDefault();
+    // if (!name || !email) {
+    //   displayAlert()
+    //   return
+    // }
+    // updateUser({ name, email})
+    let combined = `${name} ${email}`;
+    console.log(combined);
   }
 
   return (
