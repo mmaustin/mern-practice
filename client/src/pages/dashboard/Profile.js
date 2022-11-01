@@ -20,7 +20,7 @@ const Profile = () => {
   }
 
   return (
-    <Wrapper>
+    <div>
       <form className='form' onSubmit={handleSubmit}>
         <h3>profile</h3>
         {showAlert && <Alert />}
@@ -32,30 +32,17 @@ const Profile = () => {
             handleChange={(e) => setName(e.target.value)}
           />
           <FormRow
-            type='text'
-            labelText='last name'
-            name='lastName'
-            value={lastName}
-            handleChange={(e) => setLastName(e.target.value)}
-          />
-          <FormRow
             type='email'
             name='email'
             value={email}
             handleChange={(e) => setEmail(e.target.value)}
           />
-          <FormRow
-            type='text'
-            name='location'
-            value={location}
-            handleChange={(e) => setLocation(e.target.value)}
-          />
-          <button className='btn btn-block' type='submit' disabled={isLoading}>
+          <button type='submit' disabled={isLoading}>
             {isLoading ? 'Please Wait...' : 'save changes'}
           </button>
         </div>
       </form>
-    </Wrapper>
+    </div>
   )
 }
 
