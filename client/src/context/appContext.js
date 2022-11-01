@@ -94,10 +94,14 @@ const AppProvider = ({children}) => {
     const logoutUser = () => {
         dispatch({ type: LOGOUT_USER })
         removeUserFromLocalStorage()
-      }    
+      }
+
+      const updateUser = (updatedUser) => {
+        console.log(updatedUser);
+      }
 
     return(
-        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser}}>{children}</AppContext.Provider>
     )
 }
 
