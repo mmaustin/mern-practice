@@ -6,5 +6,5 @@ const value = Array.from({length: count}, (_,i) => {
 })
 console.log(value);*/
 
-let a = ' ';
+let a = '';
 a  ? console.log('looka here') : console.log('don\'t looka here')
