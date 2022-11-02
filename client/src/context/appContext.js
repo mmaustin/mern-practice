@@ -43,6 +43,7 @@ const AppProvider = ({children}) => {
 
   authFetch.interceptors.request.use(
     (config) => {
+        //not config.headers.common!!!! don't know why it worked on the last project?
       config.headers['Authorization'] = `Bearer ${state.token}`
       return config
     },
@@ -57,10 +58,8 @@ const AppProvider = ({children}) => {
       return response
     },
     (error) => {
-      console.log(error.response)
       if (error.response.status === 401) {
-        console.log('auth error')
-        //logoutUser()
+        logoutUser()
       }
       return Promise.reject(error)
     }
@@ -131,24 +130,24 @@ const AppProvider = ({children}) => {
       }
 
       const updateUser = async (currentUser) => {
-        //dispatch({ type: UPDATE_USER_BEGIN })
+        dispatch({ type: UPDATE_USER_BEGIN })
         try {
           const { data } = await authFetch.patch('/auth/updateUser', currentUser)
             console.log(data);
-          //const { user, token } = data
+            const { user, token } = data
     
-        //   dispatch({
-        //     type: UPDATE_USER_SUCCESS,
-        //     payload: { user, token },
-        //   })
-        //   addUserToLocalStorage({ user, token })
+          dispatch({
+            type: UPDATE_USER_SUCCESS,
+            payload: { user, token },
+          })
+          addUserToLocalStorage({ user, token })
         } catch (error) {
-            // if (error.response.status !== 401) {
-            //     dispatch({
-            //       type: UPDATE_USER_ERROR,
-            //       payload: { msg: error.response.data.msg },
-            //     })
-            // }      
+            if (error.response.status !== 401) {
+                dispatch({
+                  type: UPDATE_USER_ERROR,
+                  payload: { msg: error.response.data.msg },
+                })
+            }      
         }
         clearAlert()
       }
