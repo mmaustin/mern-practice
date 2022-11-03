@@ -1,11 +1,18 @@
 import Event from '../models/Event';
 import { StatusCodes } from 'http-status-codes';
-import { BadRequestError, NotFoundError } from '../errors';
+import { BadRequestError, UnAuthenticatedError } from '../errors';
 
 
+const createEvent = async (req, res) => {
+    const {organizer, description} = req.body;
 
-const createEvent = (req, res) => {
-    res.status(200).json({msg: 'create event'});
+    if(!organizer || !description){
+        throw BadRequestError('Please provide all values');
+    }
+    req.body.createdBy = req.body.userId;
+    const job = await Event.create(req.body);
+    res.status(StatusCodes.CREATED).json({job});
+
 }
 
 const getEvents = (req, res) => {
