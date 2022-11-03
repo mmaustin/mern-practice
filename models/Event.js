@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const EventSchema = new mongoose.Schema({
-    name: {
+    organizer: {
       type: String,
       required: [true, 'Please provide organizer\'s name'],
       maxlength: 20,

@@ -1,5 +1,12 @@
+import Event from '../models/Event';
+import { StatusCodes } from 'http-status-codes';
+import { BadRequestError, NotFoundError } from '../errors';
 
 
+
+const createEvent = (req, res) => {
+    res.status(200).json({msg: 'create event'});
+}
 
 const getEvents = (req, res) => {
     res.status(200).json({msg: 'all events'});
@@ -7,10 +14,6 @@ const getEvents = (req, res) => {
 
 const getEvent = (req, res) => {
     res.status(200).json({msg: 'get event'});
-}
-
-const createEvent = (req, res) => {
-    res.status(200).json({msg: 'create event'});
 }
 
 const updateEvent = (req, res) => {
