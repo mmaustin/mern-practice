@@ -1,17 +1,17 @@
-import Event from '../models/Event';
+import Event from '../models/Event.js';
 import { StatusCodes } from 'http-status-codes';
-import { BadRequestError, UnAuthenticatedError } from '../errors';
+import { BadRequestError, UnAuthenticatedError } from '../errors/index.js';
 
 
 const createEvent = async (req, res) => {
     const {organizer, description} = req.body;
 
     if(!organizer || !description){
-        throw BadRequestError('Please provide all values');
+        throw new BadRequestError('Please provide all values');
     }
-    req.body.createdBy = req.body.userId;
-    const job = await Event.create(req.body);
-    res.status(StatusCodes.CREATED).json({job});
+    req.body.createdBy = req.user.userId;
+    const event = await Event.create(req.body);
+    res.status(StatusCodes.CREATED).json({event});
 
 }
 
