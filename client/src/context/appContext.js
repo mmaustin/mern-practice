@@ -93,8 +93,8 @@ const AppProvider = ({children}) => {
         localStorage.removeItem('user')
       }    
     
-    const handleChange = (name, value) =>{
-
+    const handleChange = ({name, value}) =>{
+      dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
     }
 
     const registerUser = async (currentUser) => {

@@ -3,7 +3,7 @@ import {FormRow, Alert, FormRowSelect} from '../../components';
 //import { useState } from "react";
 
 const AddMessage = () => {
-  const {isEditing, showAlert, displayAlert, organizer, description, eventType, eventTypeOptions} = useAppContext();
+  const {isEditing, showAlert, displayAlert, organizer, description, eventType, eventTypeOptions, handleChange} = useAppContext();
 
   // const [organize, setOrganizer] = useState(organizer);
   // const [describe, setDescription] = useState(description);
@@ -19,7 +19,7 @@ const AddMessage = () => {
   const handleEventInput = e => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(`${name}: ${value}`);
+    handleChange({name, value})
   }
 
   const handleSubmit = e => {
