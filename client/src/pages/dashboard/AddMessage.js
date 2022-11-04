@@ -1,7 +1,7 @@
 import { useAppContext } from "../../context/appContext";
 import {FormRow, Alert} from '../../components';
+import FormRowSelect from "../../components/FormRowSelect";
 //import { useState } from "react";
-
 
 const AddMessage = () => {
   const {isEditing, showAlert, displayAlert, organizer, description, eventType, eventTypeOptions} = useAppContext();
@@ -51,14 +51,28 @@ const AddMessage = () => {
             value={description}
             onChange={handleEventInput}
           ></textarea>
-          <label htmlFor="eventType">Event</label>
+          <FormRowSelect
+            labelText='Event'
+            type='text'
+            name='eventType'
+            value={eventType}
+            list={eventTypeOptions}
+            handleChange={handleEventInput}
+          />
+          {/* <label htmlFor="eventType">Event</label>
           <select
             id="eventType"
             name="eventType"
             value={eventType}
             onChange={handleEventInput}>
-              
-          </select>
+              {eventTypeOptions.map((type, i)=>{
+                return (
+                  <option key={i} value={type}>
+                    {type}
+                  </option>
+                )
+              })}
+          </select> */}
           <div>
             <button type="submit" onClick={handleSubmit}>submit form</button>
           </div>
