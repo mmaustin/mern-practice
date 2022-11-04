@@ -1,6 +1,5 @@
 import { useAppContext } from "../../context/appContext";
-import {FormRow, Alert} from '../../components';
-import FormRowSelect from "../../components/FormRowSelect";
+import {FormRow, Alert, FormRowSelect} from '../../components';
 //import { useState } from "react";
 
 const AddMessage = () => {

@@ -14,7 +14,8 @@ import {
     LOGOUT_USER,
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
-    UPDATE_USER_ERROR,    
+    UPDATE_USER_ERROR,
+    HANDLE_CHANGE    
 } from './actions'
 
 const token = localStorage.getItem('token');
@@ -91,6 +92,10 @@ const AppProvider = ({children}) => {
         localStorage.removeItem('token')
         localStorage.removeItem('user')
       }    
+    
+    const handleChange = (name, value) =>{
+
+    }
 
     const registerUser = async (currentUser) => {
         dispatch({type: REGISTER_USER_BEGIN});
@@ -159,7 +164,7 @@ const AppProvider = ({children}) => {
       }
 
     return(
-        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange}}>{children}</AppContext.Provider>
     )
 }
 
