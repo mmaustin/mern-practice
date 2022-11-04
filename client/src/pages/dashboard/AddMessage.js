@@ -51,6 +51,14 @@ const AddMessage = () => {
             value={description}
             onChange={handleEventInput}
           ></textarea>
+          <label htmlFor="eventType">Event</label>
+          <select
+            id="eventType"
+            name="eventType"
+            value={eventType}
+            onChange={handleEventInput}>
+              
+          </select>
           <div>
             <button type="submit" onClick={handleSubmit}>submit form</button>
           </div>
