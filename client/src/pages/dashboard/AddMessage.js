@@ -15,6 +15,7 @@ const AddMessage = () => {
   //   e.preventDefault()
   //   console.log(`${organize}: ${describe}`)
   // }
+  const theDate = '';
 
   const handleEventInput = e => {
     const name = e.target.name;

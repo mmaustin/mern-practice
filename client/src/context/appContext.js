@@ -106,7 +106,7 @@ const AppProvider = ({children}) => {
                 type: REGISTER_USER_SUCCESS,
                 payload: {user, token}
             });
-            addUserToLocalStorage({ user, token })            
+            addUserToLocalStorage({ user, token })           
         } catch (error) {
             dispatch({
                 type: REGISTER_USER_ERROR,
