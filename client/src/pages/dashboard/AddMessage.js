@@ -20,7 +20,8 @@ const AddMessage = () => {
   const handleEventInput = e => {
     const name = e.target.name;
     const value = e.target.value;
-    handleChange({name, value})
+    console.log(`${name}: ${value}`)
+    //handleChange({name, value})
   }
 
   const handleSubmit = e => {
@@ -59,6 +60,10 @@ const AddMessage = () => {
             list={eventTypeOptions}
             handleChange={handleEventInput}
           />
+          <label>
+            Enter your birthday:
+          <input type="date" name="theDate" value={theDate} onChange={handleEventInput}/>
+        </label> 
           {/* <label htmlFor="eventType">Event</label>
           <select
             id="eventType"
