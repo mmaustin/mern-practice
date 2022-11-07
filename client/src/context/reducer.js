@@ -106,6 +106,7 @@ const reducer = (state, action) => {
     }
     
     if (action.type === CLEAR_VALUES){
+      //don't quite get this
       const initialState = {
         isEditing: false,
         editEventId: '',
