@@ -2,7 +2,7 @@ import { useAppContext } from "../../context/appContext";
 import {FormRow, Alert, FormRowSelect} from '../../components';
 
 const AddMessage = () => {
-  const {isEditing, showAlert, displayAlert, organizer, description, eventType, eventTypeOptions, handleChange, clearValues} = useAppContext();
+  const {isEditing, isLoading, showAlert, displayAlert, organizer, description, eventType, eventTypeOptions, handleChange, clearValues} = useAppContext();
 
   const handleEventInput = e => {
     const name = e.target.name;
@@ -47,7 +47,7 @@ const AddMessage = () => {
             handleChange={handleEventInput}
           />
           <div>
-            <button type="submit" onClick={handleSubmit}>submit form</button>
+            <button type="submit" onClick={handleSubmit} disabled={isLoading}>submit form</button>
             <button onClick={(e)=> {
               e.preventDefault();
               clearValues();

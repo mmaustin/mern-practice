@@ -171,8 +171,29 @@ const AppProvider = ({children}) => {
         clearAlert()
       }
 
+      const createEvent = async () => {
+        dispatch({ type: CREATE_EVENT_BEGIN })
+        try {
+          const { orgainizer, description, eventType } = state
+          await authFetch.post('/events', {
+            orgainizer,
+            description,
+            eventType
+          })
+          dispatch({ type: CREATE_EVENT_SUCCESS })
+          dispatch({ type: CLEAR_VALUES })
+        } catch (error) {
+          if (error.response.status === 401) return
+          dispatch({
+            type: CREATE_EVENT_ERROR,
+            payload: { msg: error.response.data.msg },
+          })
+        }
+        clearAlert()
+      }      
+
     return(
-        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues, createEvent}}>{children}</AppContext.Provider>
     )
 }
 
