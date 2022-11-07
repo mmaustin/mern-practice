@@ -174,9 +174,9 @@ const AppProvider = ({children}) => {
       const createEvent = async () => {
         dispatch({ type: CREATE_EVENT_BEGIN })
         try {
-          const { orgainizer, description, eventType } = state
+          const { organizer, description, eventType } = state
           await authFetch.post('/events', {
-            orgainizer,
+            organizer,
             description,
             eventType
           })

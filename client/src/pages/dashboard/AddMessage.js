@@ -2,7 +2,7 @@ import { useAppContext } from "../../context/appContext";
 import {FormRow, Alert, FormRowSelect} from '../../components';
 
 const AddMessage = () => {
-  const {isEditing, isLoading, showAlert, displayAlert, organizer, description, eventType, eventTypeOptions, handleChange, clearValues} = useAppContext();
+  const {isEditing, isLoading, showAlert, displayAlert, organizer, description, eventType, eventTypeOptions, handleChange, clearValues, createEvent} = useAppContext();
 
   const handleEventInput = e => {
     const name = e.target.name;
@@ -12,11 +12,15 @@ const AddMessage = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if(!organizer || !description){
-      displayAlert();
+    // if(!organizer || !description){
+    //   displayAlert();
+    //   return
+    // }
+    if(isEditing){
+      //eventually editJob()
       return
     }
-    console.log('object created');
+    createEvent();
   }
 
   return (
