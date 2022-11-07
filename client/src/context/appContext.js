@@ -99,7 +99,7 @@ const AppProvider = ({children}) => {
     }
 
     const clearValues = () => {
-      dispatch({type: HANDLE_CHANGE})
+      dispatch({type: CLEAR_VALUES})
     }
 
     const registerUser = async (currentUser) => {
