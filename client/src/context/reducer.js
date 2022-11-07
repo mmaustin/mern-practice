@@ -103,7 +103,20 @@ const reducer = (state, action) => {
         ...state,
         [action.payload.name]: action.payload.value,
       }
-    }     
+    }
+    
+    if (action.type === CLEAR_VALUES){
+      const initialState = {
+        isEditing: false,
+        editEventId: '',
+        organizer: '',
+        description: '',
+        eventType: 'other'
+      }
+      return {
+        ...state, ...initialState
+      }
+    }
 
     throw new Error(`no such action : ${action.type}`)   
 }
