@@ -16,7 +16,10 @@ import {
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
     HANDLE_CHANGE,
-    CLEAR_VALUES  
+    CLEAR_VALUES,
+    CREATE_EVENT_BEGIN,
+    CREATE_EVENT_SUCCESS,
+    CREATE_EVENT_ERROR,      
 } from './actions'
 
 const token = localStorage.getItem('token');

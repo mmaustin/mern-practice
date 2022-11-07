@@ -12,7 +12,11 @@ import {
     UPDATE_USER_SUCCESS,
     UPDATE_USER_ERROR,
     HANDLE_CHANGE,
-    CLEAR_VALUES     
+    CLEAR_VALUES,
+    CREATE_EVENT_BEGIN,
+    CREATE_EVENT_SUCCESS,
+    CREATE_EVENT_ERROR,
+
 } from './actions'
 import { initialState } from './appContext'
 
@@ -118,6 +122,29 @@ const reducer = (state, action) => {
         ...state, ...initialState
       }
     }
+
+    if (action.type === CREATE_EVENT_BEGIN) {
+      return { ...state, isLoading: true }
+    }    
+
+    if (action.type === CREATE_EVENT_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'success',
+        alertText: 'New Job Created!',
+      }
+    }
+    if (action.type === CREATE_EVENT_ERROR) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'danger',
+        alertText: action.payload.msg,
+      }
+    }    
 
     throw new Error(`no such action : ${action.type}`)   
 }
