@@ -16,6 +16,8 @@ import {
     CREATE_EVENT_BEGIN,
     CREATE_EVENT_SUCCESS,
     CREATE_EVENT_ERROR,
+    GET_JOBS_BEGIN,      
+    GET_JOBS_SUCCESS    
 
 } from './actions'
 import { initialState } from './appContext'

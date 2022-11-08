@@ -19,7 +19,9 @@ import {
     CLEAR_VALUES,
     CREATE_EVENT_BEGIN,
     CREATE_EVENT_SUCCESS,
-    CREATE_EVENT_ERROR,      
+    CREATE_EVENT_ERROR,
+    GET_JOBS_BEGIN,      
+    GET_JOBS_SUCCESS,      
 } from './actions'
 
 const token = localStorage.getItem('token');
@@ -37,7 +39,11 @@ const initialState ={
     organizer: '',
     description: '',
     eventTypeOptions: ['sitter', 'celebration', 'tutoring', 'other'],
-    eventType: 'other'
+    eventType: 'other',
+    jobs: [],
+    totalJobs: 0,
+    numOfPages: 1,
+    page: 1, 
 }
 
 const AppContext = React.createContext();
