@@ -196,10 +196,37 @@ const AppProvider = ({children}) => {
           })
         }
         clearAlert()
+      }
+      
+      const getJobs = async () => {
+        let url = `/jobs`;
+        // const { page, search, searchStatus, searchType, sort } = state
+    
+        // let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`
+        // if (search) {
+        //   url = url + `&search=${search}`
+        // }
+        dispatch({ type: GET_JOBS_BEGIN })
+        try {
+          const { data } = await authFetch(url)
+          const { jobs, totalJobs, numOfPages } = data
+          dispatch({
+            type: GET_JOBS_SUCCESS,
+            payload: {
+              jobs,
+              totalJobs,
+              numOfPages,
+            },
+          })
+        } catch (error) {
+          //logoutUser()
+          console.log(error.response);
+        }
+        clearAlert()
       }      
 
     return(
-        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues, createEvent}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues, createEvent, getJobs}}>{children}</AppContext.Provider>
     )
 }
 
