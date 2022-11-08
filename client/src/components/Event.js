@@ -1,6 +1,7 @@
-const Event = () => {
+
+const Event = ({description}) => {
   return (
-    <h3>Event</h3>
+    <h3>{description}</h3>
   )
 }
 export default Event
