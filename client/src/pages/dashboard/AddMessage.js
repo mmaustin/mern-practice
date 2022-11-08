@@ -2,7 +2,7 @@ import { useAppContext } from "../../context/appContext";
 import {FormRow, Alert, FormRowSelect} from '../../components';
 
 const AddMessage = () => {
-  const {isEditing, isLoading, showAlert, displayAlert, organizer, description, eventType, eventTypeOptions, handleChange, clearValues, createEvent} = useAppContext();
+  const {isEditing, isLoading, showAlert, displayAlert, organizer, description, eventType, eventTypeOptions, handleChange, clearValues, createEvent, editEvent} = useAppContext();
 
   const handleEventInput = e => {
     const name = e.target.name;
@@ -17,7 +17,7 @@ const AddMessage = () => {
     //   return
     // }
     if(isEditing){
-      //eventually editJob()
+      editEvent()
       return
     }
     createEvent();

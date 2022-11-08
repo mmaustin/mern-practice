@@ -17,7 +17,8 @@ import {
     CREATE_EVENT_SUCCESS,
     CREATE_EVENT_ERROR,
     GET_JOBS_BEGIN,      
-    GET_JOBS_SUCCESS    
+    GET_JOBS_SUCCESS,
+    SET_EDIT_EVENT   
 
 } from './actions'
 import { initialState } from './appContext'
@@ -158,6 +159,19 @@ const reducer = (state, action) => {
         events: action.payload.events,
         totalEvents: action.payload.totalEvents,
         numOfPages: action.payload.numOfPages,
+      }
+    }
+    
+    if (action.type === SET_EDIT_EVENT) {
+      const event = state.events.find((event) => event._id === action.payload.id)
+      const { _id, organizer, description, eventType } = event
+      return {
+        ...state,
+        isEditing: true,
+        editEventId: _id,
+        organizer,
+        description,
+        eventType
       }
     }    
 

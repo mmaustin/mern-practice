@@ -21,7 +21,8 @@ import {
     CREATE_EVENT_SUCCESS,
     CREATE_EVENT_ERROR,
     GET_JOBS_BEGIN,      
-    GET_JOBS_SUCCESS,      
+    GET_JOBS_SUCCESS,
+    SET_EDIT_EVENT      
 } from './actions'
 
 const token = localStorage.getItem('token');
@@ -225,8 +226,12 @@ const AppProvider = ({children}) => {
         clearAlert()
       }
 
-      const setEditEvent = id => {
-        console.log(`set edit event: ${id}`);
+      const setEditEvent = (id) => {
+        dispatch({ type: SET_EDIT_EVENT, payload: { id } })
+      }
+
+      const editEvent = () => {
+        console.log(`edit job`);
       }
 
       const deleteEvent = id => {
@@ -234,7 +239,7 @@ const AppProvider = ({children}) => {
       }
 
     return(
-        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues, createEvent, getJobs, setEditEvent, deleteEvent}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues, createEvent, getJobs, setEditEvent, deleteEvent, editEvent}}>{children}</AppContext.Provider>
     )
 }
 
