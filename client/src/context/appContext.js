@@ -1,4 +1,4 @@
-import React, {useReducer, useContext} from 'react';
+import React, {useReducer, useContext } from 'react';
 import reducer from './reducer';
 import axios from 'axios';
 
@@ -40,8 +40,8 @@ const initialState ={
     description: '',
     eventTypeOptions: ['sitter', 'celebration', 'tutoring', 'other'],
     eventType: 'other',
-    jobs: [],
-    totalJobs: 0,
+    events: [],
+    totalEvents: 0,
     numOfPages: 1,
     page: 1, 
 }
@@ -199,7 +199,7 @@ const AppProvider = ({children}) => {
       }
       
       const getJobs = async () => {
-        let url = `/jobs`;
+        let url = `/events`;
         // const { page, search, searchStatus, searchType, sort } = state
     
         // let url = `/jobs?page=${page}&status=${searchStatus}&jobType=${searchType}&sort=${sort}`
@@ -209,12 +209,12 @@ const AppProvider = ({children}) => {
         dispatch({ type: GET_JOBS_BEGIN })
         try {
           const { data } = await authFetch(url)
-          const { jobs, totalJobs, numOfPages } = data
+          const { events, totalEvents, numOfPages } = data
           dispatch({
             type: GET_JOBS_SUCCESS,
             payload: {
-              jobs,
-              totalJobs,
+              events,
+              totalEvents,
               numOfPages,
             },
           })
@@ -223,7 +223,7 @@ const AppProvider = ({children}) => {
           console.log(error.response);
         }
         clearAlert()
-      }      
+      }
 
     return(
         <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues, createEvent, getJobs}}>{children}</AppContext.Provider>
