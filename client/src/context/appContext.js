@@ -225,8 +225,16 @@ const AppProvider = ({children}) => {
         clearAlert()
       }
 
+      const setEditEvent = id => {
+        console.log(`set edit event: ${id}`);
+      }
+
+      const deleteEvent = id => {
+        console.log(`delete event: ${id}`);
+      }
+
     return(
-        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues, createEvent, getJobs}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues, createEvent, getJobs, setEditEvent, deleteEvent}}>{children}</AppContext.Provider>
     )
 }
 

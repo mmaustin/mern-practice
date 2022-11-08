@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const Event = ({description, createdAt}) => {
   let date = moment(createdAt);
-  date = date.format('MMMM Do YYYY');
+  date = date.format('MMMM Do, YYYY');
 
   return (
     <>
