@@ -22,6 +22,10 @@ const Event = ({description, createdAt, _id, organizer, eventType}) => {
       </header>
       <footer>
         <div>
+          <EventInfo text={date}/>
+          <EventInfo text={eventType}/>
+        </div>
+        <div>
           <Link to='/add-message' onClick={()=> setEditEvent(_id)}>Edit Event</Link>
           <button type='button' onClick={()=> deleteEvent(_id)}>Delete Event</button>
         </div>

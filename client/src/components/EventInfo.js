@@ -1,6 +1,10 @@
-const EventInfo = () => {
+
+
+const EventInfo = ({text}) => {
   return (
-    <h3>Event Info</h3>
+    <div>
+      <h3>{text}</h3>
+    </div>
   )
 }
 export default EventInfo
