@@ -1,6 +1,6 @@
 import Event from '../models/Event.js';
 import { StatusCodes } from 'http-status-codes';
-import { BadRequestError, UnAuthenticatedError } from '../errors/index.js';
+import { BadRequestError, NotFoundError } from '../errors/index.js';
 
 
 const createEvent = async (req, res) => {

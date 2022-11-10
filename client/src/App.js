@@ -7,9 +7,9 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ProtectedRoute><SharedLayout/></ProtectedRoute>}> 
-          <Route index element={<AllMessages/>}/>
+          <Route index element={<Profile/>}/>
           <Route path='add-message' element={<AddMessage/>}/>
-          <Route path='profile' element={<Profile/>}/>
+          <Route path='all-messages' element={<AllMessages/>}/>
         </Route>
         <Route path='/landing' element={<Landing/>}/>
         <Route path='/register' element={<Register/>}/>

@@ -4,13 +4,13 @@ const BigSidebar = () => {
   return (
     <>
         <div>
-            <Link to='/'>All Messages</Link>
+            <Link to='/'>Profile</Link>
         </div>
         <div>
             <Link to='add-message'>Add Message</Link>
         </div>
         <div>
-            <Link to='profile'>Profile</Link>
+            <Link to='all-messages'>All Messages</Link>
         </div>
     </>
   )
