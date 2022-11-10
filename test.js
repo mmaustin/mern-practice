@@ -28,3 +28,7 @@ console.log(value);*/
 
 //console.log(/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/.test('11/02/1975')); //date
 //console.log(/^((1[0-2]|0?[0-9]):[0-5]?[0-9]\s([ap][m])|((2[0-3]|[0-1]?[0-9]):[0-5][0-9]))$/igm.test('11:30 ')); //time
+
+const obj = {name: "mccray", age: 47, location: "crown heights"};
+const {name: n} = obj;
+console.log(n);

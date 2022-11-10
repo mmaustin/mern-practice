@@ -25,11 +25,31 @@ const getEvent = (req, res) => {
     res.status(200).json({msg: 'get event'});
 }
 
-const updateEvent = (req, res) => {
-    res.status(200).json({msg: 'update event'});
+const updateEvent = async (req, res) => {
+    const { id: eventId } = req.params
+    const { organizer, description } = req.body
+  
+    if (!organizer || !description) {
+      throw new BadRequestError('Please provide all values')
+    }
+    const event = await Event.findOne({ _id: eventId })
+  
+    if (!event) {
+      throw new NotFoundError(`No job with id :${eventId}`)
+    }
+    // check permissions
+  
+    //checkPermissions(req.user, job.createdBy)
+  
+    const updatedEvent = await Event.findOneAndUpdate({ _id: eventId }, req.body, {
+      new: true,
+      runValidators: true,
+    })
+  
+    res.status(StatusCodes.OK).json({ updatedEvent })
 }
 
-const deleteEvent = (req, res) => {
+const deleteEvent = async (req, res) => {
     res.status(200).json({msg: 'delete event'});
 }
 
