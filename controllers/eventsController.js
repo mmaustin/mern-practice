@@ -65,7 +65,7 @@ const deleteEvent = async (req, res) => {
   
     await event.remove()
   
-    res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' })    
+    res.status(StatusCodes.OK).json({ msg: 'Success! Event removed' })    
 }
 
 export {getEvents, getEvent, createEvent, updateEvent, deleteEvent};

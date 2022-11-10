@@ -8,9 +8,6 @@ const Main = styled.main`
 height: 100%;
 width:100%;
 display: flex;
-/* justify-content: flex-start;
-align-items: center;
-flex-flow: row wrap; */
 
 .archer{
   border-right: 1px solid grey;
@@ -53,9 +50,8 @@ const SharedLayout = () => {
 
 const NavCon = styled.div`
     width: 100%;
-    height: 200px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-flow: column;  
 `
