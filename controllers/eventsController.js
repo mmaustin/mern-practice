@@ -1,6 +1,7 @@
 import Event from '../models/Event.js';
 import { StatusCodes } from 'http-status-codes';
 import { BadRequestError, NotFoundError } from '../errors/index.js';
+import checkPermissions from '../utils/checkPermissions.js';
 
 
 const createEvent = async (req, res) => {
@@ -38,8 +39,8 @@ const updateEvent = async (req, res) => {
       throw new NotFoundError(`No job with id :${eventId}`)
     }
     // check permissions
-  
-    //checkPermissions(req.user, job.createdBy)
+    
+    checkPermissions(req.user, event.createdBy)
     
     //findOneAndUpdate does not trigger any hooks that may be present on the model
     //you would use model.save() and the alternative updating approach outlined in video 150
@@ -52,7 +53,19 @@ const updateEvent = async (req, res) => {
 }
 
 const deleteEvent = async (req, res) => {
-    res.status(200).json({msg: 'delete event'});
+    const { id: eventId } = req.params
+
+    const event = await Event.findOne({ _id: eventId })
+  
+    if (!event) {
+      throw new NotFoundError(`No job with id :${eventId}`)
+    }
+  
+    checkPermissions(req.user, event.createdBy)
+  
+    await event.remove()
+  
+    res.status(StatusCodes.OK).json({ msg: 'Success! Job removed' })    
 }
 
 export {getEvents, getEvent, createEvent, updateEvent, deleteEvent};
