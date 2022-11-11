@@ -19,7 +19,10 @@ import {
     GET_JOBS_BEGIN,      
     GET_JOBS_SUCCESS,
     SET_EDIT_EVENT,
-    DELETE_EVENT_BEGIN   
+    DELETE_EVENT_BEGIN,
+    EDIT_EVENT_BEGIN,
+    EDIT_EVENT_SUCCESS,
+    EDIT_EVENT_ERROR,   
 
 } from './actions'
 import { initialState } from './appContext'
@@ -178,7 +181,32 @@ const reducer = (state, action) => {
     
     if (action.type === DELETE_EVENT_BEGIN) {
       return { ...state, isLoading: true }
-    }    
+    }
+
+    if (action.type === EDIT_EVENT_BEGIN) {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+    if (action.type === EDIT_EVENT_SUCCESS) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'success',
+        alertText: 'Job Updated!',
+      }
+    }
+    if (action.type === EDIT_EVENT_ERROR) {
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertType: 'danger',
+        alertText: action.payload.msg,
+      }
+    }
 
     throw new Error(`no such action : ${action.type}`)   
 }

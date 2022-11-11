@@ -241,7 +241,8 @@ const AppProvider = ({children}) => {
           await authFetch.delete(`/events/${eventId}`)
           getJobs()
         } catch (error) {
-          logoutUser()
+          console.log(error.response);
+          //logoutUser()
         }
       }
 
