@@ -235,10 +235,10 @@ const AppProvider = ({children}) => {
         console.log(`edit job`);
       }
       //all references to jobs should be events
-      const deleteEvent = async (jobId) => {
+      const deleteEvent = async (eventId) => {
         dispatch({ type: DELETE_EVENT_BEGIN })
         try {
-          await authFetch.delete(`/events/${jobId}`)
+          await authFetch.delete(`/events/${eventId}`)
           getJobs()
         } catch (error) {
           logoutUser()

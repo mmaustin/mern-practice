@@ -174,6 +174,10 @@ const reducer = (state, action) => {
         description,
         eventType
       }
+    }
+    
+    if (action.type === DELETE_EVENT_BEGIN) {
+      return { ...state, isLoading: true }
     }    
 
     throw new Error(`no such action : ${action.type}`)   
