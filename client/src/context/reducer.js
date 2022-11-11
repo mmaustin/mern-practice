@@ -18,7 +18,8 @@ import {
     CREATE_EVENT_ERROR,
     GET_JOBS_BEGIN,      
     GET_JOBS_SUCCESS,
-    SET_EDIT_EVENT   
+    SET_EDIT_EVENT,
+    DELETE_EVENT_BEGIN   
 
 } from './actions'
 import { initialState } from './appContext'
@@ -148,7 +149,7 @@ const reducer = (state, action) => {
         alertText: action.payload.msg,
       }
     }
-    
+    //all references to jobs should be events
     if (action.type === GET_JOBS_BEGIN) {
       return { ...state, isLoading: true, showAlert: false }
     }

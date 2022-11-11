@@ -22,8 +22,10 @@ export const CLEAR_VALUES = 'CLEAR_VALUES'
 export const CREATE_EVENT_BEGIN = 'CREATE_EVENT_BEGIN'
 export const CREATE_EVENT_SUCCESS = 'CREATE_EVENT_SUCCESS'
 export const CREATE_EVENT_ERROR = 'CREATE_EVENT_ERROR'
-
+//all references to jobs should be events
 export const GET_JOBS_BEGIN = 'GET_JOBS_BEGIN'
 export const GET_JOBS_SUCCESS = 'GET_JOBS_SUCCESS'
 
 export const SET_EDIT_EVENT = 'SET_EDIT_EVENT'
+
+export const DELETE_EVENT_BEGIN = 'DELETE_JOB_BEGIN'

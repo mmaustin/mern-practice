@@ -22,7 +22,8 @@ import {
     CREATE_EVENT_ERROR,
     GET_JOBS_BEGIN,      
     GET_JOBS_SUCCESS,
-    SET_EDIT_EVENT      
+    SET_EDIT_EVENT,
+    DELETE_EVENT_BEGIN      
 } from './actions'
 
 const token = localStorage.getItem('token');
@@ -198,7 +199,7 @@ const AppProvider = ({children}) => {
         }
         clearAlert()
       }
-      
+      //of course all references to jobs should be events!!!
       const getJobs = async () => {
         let url = `/events`;
         // const { page, search, searchStatus, searchType, sort } = state
@@ -233,9 +234,15 @@ const AppProvider = ({children}) => {
       const editEvent = () => {
         console.log(`edit job`);
       }
-
-      const deleteEvent = id => {
-        console.log(`delete event: ${id}`);
+      //all references to jobs should be events
+      const deleteEvent = async (jobId) => {
+        dispatch({ type: DELETE_EVENT_BEGIN })
+        try {
+          await authFetch.delete(`/events/${jobId}`)
+          getJobs()
+        } catch (error) {
+          logoutUser()
+        }
       }
 
     return(

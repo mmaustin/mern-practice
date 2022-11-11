@@ -30,5 +30,7 @@ console.log(value);*/
 //console.log(/^((1[0-2]|0?[0-9]):[0-5]?[0-9]\s([ap][m])|((2[0-3]|[0-1]?[0-9]):[0-5][0-9]))$/igm.test('11:30 ')); //time
 
 const obj = {name: "mccray", age: 47, location: "crown heights"};
-const {name: n} = obj;
-console.log(n);
+const makersMark = ({...obj}) => {
+    console.log(`My name is ${name}. I'm ${age}, and I live in ${location}.`)
+}
+makersMark(obj);
