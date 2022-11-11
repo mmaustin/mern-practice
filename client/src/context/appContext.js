@@ -23,7 +23,10 @@ import {
     GET_JOBS_BEGIN,      
     GET_JOBS_SUCCESS,
     SET_EDIT_EVENT,
-    DELETE_EVENT_BEGIN      
+    DELETE_EVENT_BEGIN,
+    EDIT_EVENT_BEGIN,
+    EDIT_EVENT_SUCCESS,
+    EDIT_EVENT_ERROR,     
 } from './actions'
 
 const token = localStorage.getItem('token');
@@ -231,8 +234,26 @@ const AppProvider = ({children}) => {
         dispatch({ type: SET_EDIT_EVENT, payload: { id } })
       }
 
-      const editEvent = () => {
-        console.log(`edit job`);
+      const editEvent = async () => {
+        dispatch({ type: EDIT_EVENT_BEGIN })
+
+        try {
+          const { organizer, description, eventType} = state
+          await authFetch.patch(`/events/${state.editEventId}`, {
+            organizer,
+            description,
+            eventType
+          })
+          dispatch({ type: EDIT_EVENT_SUCCESS })
+          dispatch({ type: CLEAR_VALUES })
+        } catch (error) {
+          if (error.response.status === 401) return
+          dispatch({
+            type: EDIT_EVENT_ERROR,
+            payload: { msg: error.response.data.msg },
+          })
+        }
+        clearAlert()
       }
       //all references to jobs should be events
       const deleteEvent = async (eventId) => {
