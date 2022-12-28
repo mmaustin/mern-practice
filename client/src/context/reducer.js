@@ -61,7 +61,12 @@ const reducer = (state, action) => {
       }
     }
     if(action.type === REGISTER_USER_ERROR){
-      return {...state, isLoading: false, showAlert: true, alertText: action.payload.msg};
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        alertText: action.payload.msg
+      };
     }   
 
     if(action.type === LOGIN_USER_BEGIN){
@@ -195,7 +200,7 @@ const reducer = (state, action) => {
         isLoading: false,
         showAlert: true,
         alertType: 'success',
-        alertText: 'Job Updated!',
+        alertText: 'Event Updated!',
       }
     }
     if (action.type === EDIT_EVENT_ERROR) {
