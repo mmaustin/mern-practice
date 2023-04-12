@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import 'express-async-errors'
 import morgan from 'morgan'
+import cookieParser from 'cookie-parser';
 
 // import testMid from './middleware/test-middleware.js';
 
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.use(express.json());
+app.use(cookieParser());
 //app.use(testMid);
 
 // app.get('/test', (req, res)=>{
