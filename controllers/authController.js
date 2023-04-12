@@ -43,6 +43,13 @@ const login = async (req, res) => {
   }
   const token = user.createJWT()
   user.password = undefined
+
+  //Cookie set up for login
+  const oneDay = 1000 * 60 * 60 *24;
+  res.cookie('token', token, { httpOnly: true, expires: new Date(Date.now() + oneDay), 
+    secure: process.env.NODE_ENV === 'production',
+  })
+
   res.status(StatusCodes.OK).json({ user, token})
 }
 
