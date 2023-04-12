@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import {StatusCodes} from 'http-status-codes';
 import {BadRequestError, UnAuthenticatedError} from '../errors/index.js';
+import attachCookies from '../utils/attachCookie.js';
 
 
 const register = async (req, res) => {
@@ -17,6 +18,8 @@ const register = async (req, res) => {
     const user = await User.create({ name, email, password })
   
     const token = user.createJWT()
+    //method for using Cookies
+    attachCookies({res, token});
     //** thus we return a user object and leave the password out
     res.status(StatusCodes.CREATED).json({
       user: {
@@ -43,12 +46,8 @@ const login = async (req, res) => {
   }
   const token = user.createJWT()
   user.password = undefined
-
-  //Cookie set up for login
-  const oneDay = 1000 * 60 * 60 *24;
-  res.cookie('token', token, { httpOnly: true, expires: new Date(Date.now() + oneDay), 
-    secure: process.env.NODE_ENV === 'production',
-  })
+  //method for using Cookies
+  attachCookies({res, token});
 
   res.status(StatusCodes.OK).json({ user, token})
 }
@@ -65,7 +64,9 @@ const updateUser = async (req, res) => {
 
   await user.save()
 
-  const token = user.createJWT()
+  const token = user.createJWT();
+  //method for using Cookies
+  attachCookies({res, token});  
 
   res.status(StatusCodes.OK).json({ user, token})
 }
