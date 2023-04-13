@@ -29,16 +29,19 @@ import {
     EDIT_EVENT_ERROR,     
 } from './actions'
 
-const token = localStorage.getItem('token');
-const user = localStorage.getItem('user');
+//No longer needed for cookie auth
+// const token = localStorage.getItem('token');
+// const user = localStorage.getItem('user');
 
 const initialState ={
     isLoading: false,
     showAlert: false,
     alertText: '',
     alertType: '',
-    user: user ? JSON.parse(user) : null,
-    token: token,
+    //Code needed for storing token in local state, now we just have user: null
+    // user: user ? JSON.parse(user) : null,
+    // token: token,
+    user: null,
     isEditing: false,
     editEventId: '',
     organizer: '',
@@ -62,17 +65,17 @@ const AppProvider = ({children}) => {
     baseURL: '/api/v1',
   })
   // request
-
-  authFetch.interceptors.request.use(
-    (config) => {
-        //not config.headers.common!!!! don't know why it worked on the last project?
-      config.headers['Authorization'] = `Bearer ${state.token}`
-      return config
-    },
-    (error) => {
-      return Promise.reject(error)
-    }
-  )
+  //No longer needed for cookie auth
+  // authFetch.interceptors.request.use(
+  //   (config) => {
+  //       //not config.headers.common!!!! don't know why it worked on the last project?
+  //     config.headers['Authorization'] = `Bearer ${state.token}`
+  //     return config
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error)
+  //   }
+  // )
   // response
 
   authFetch.interceptors.response.use(
@@ -97,16 +100,17 @@ const AppProvider = ({children}) => {
           dispatch({ type: CLEAR_ALERT })
         }, 3000)
     }
-
-    const addUserToLocalStorage = ({ user, token }) => {
-        localStorage.setItem('user', JSON.stringify(user))
-        localStorage.setItem('token', token)
-      }
     
-      const removeUserFromLocalStorage = () => {
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
-      }    
+    //No longer needed for cookie auth
+    // const addUserToLocalStorage = ({ user, token }) => {
+    //     localStorage.setItem('user', JSON.stringify(user))
+    //     localStorage.setItem('token', token)
+    //   }
+    
+    //   const removeUserFromLocalStorage = () => {
+    //     localStorage.removeItem('token')
+    //     localStorage.removeItem('user')
+    //   }    
     
     const handleChange = ({name, value}) =>{
       dispatch({ type: HANDLE_CHANGE, payload: { name, value } })
@@ -116,16 +120,17 @@ const AppProvider = ({children}) => {
       dispatch({type: CLEAR_VALUES})
     }
 
+    //Remove token instances and local storage, no longer needed for cookie auth
     const registerUser = async (currentUser) => {
         dispatch({type: REGISTER_USER_BEGIN});
         try {
             const {data} = await axios.post('/api/v1/auth/register', currentUser)
-            const {user, token} = data;
+            const {user} = data;
             dispatch({
                 type: REGISTER_USER_SUCCESS,
-                payload: {user, token}
+                payload: {user}
             });
-            addUserToLocalStorage({ user, token })           
+            //addUserToLocalStorage({ user, token })           
         } catch (error) {
             dispatch({
                 type: REGISTER_USER_ERROR,
@@ -134,17 +139,17 @@ const AppProvider = ({children}) => {
         }
         clearAlert();
     }
-
+    //Remove token instances and local storage, no longer needed for cookie auth
     const loginUser = async (currentUser) => {
         dispatch({type: LOGIN_USER_BEGIN});
         try {
             const {data} = await axios.post('/api/v1/auth/login', currentUser)
-            const {user, token} = data;
+            const {user} = data;
             dispatch({
                 type: LOGIN_USER_SUCCESS,
-                payload: {user, token}
+                payload: {user}
             });
-            addUserToLocalStorage({ user, token })            
+            //addUserToLocalStorage({ user, token })            
         } catch (error) {
             dispatch({
                 type: LOGIN_USER_ERROR,
@@ -156,21 +161,22 @@ const AppProvider = ({children}) => {
 
     const logoutUser = () => {
         dispatch({ type: LOGOUT_USER })
-        removeUserFromLocalStorage()
+        //removeUserFromLocalStorage()
       }
 
+      //Remove token instances and local storage, no longer needed for cookie auth
       const updateUser = async (currentUser) => {
         dispatch({ type: UPDATE_USER_BEGIN })
         try {
           const { data } = await authFetch.patch('/auth/updateUser', currentUser)
             console.log(data);
-            const { user, token } = data
+            const { user } = data
     
           dispatch({
             type: UPDATE_USER_SUCCESS,
-            payload: { user, token },
+            payload: { user },
           })
-          addUserToLocalStorage({ user, token })
+          //addUserToLocalStorage({ user, token })
         } catch (error) {
             if (error.response.status !== 401) {
                 dispatch({
