@@ -55,7 +55,8 @@ const reducer = (state, action) => {
         isLoading: false,
         showAlert: true,
         user: action.payload.user,
-        token: action.payload.token,
+        //not needed with cookies
+        //token: action.payload.token,
         alertType: 'success',
         alertText: 'User Created, redirecting . . . '
       }
@@ -78,7 +79,8 @@ const reducer = (state, action) => {
         isLoading: false,
         showAlert: true,
         user: action.payload.user,
-        token: action.payload.token,
+        //not needed with cookies
+        //token: action.payload.token,
         alertType: 'success',
         alertText: 'User logged in, redirecting . . . '
       }
@@ -88,7 +90,8 @@ const reducer = (state, action) => {
     }
     
     if(action.type === LOGOUT_USER){
-      return {...initialState, user: null, token: null}
+      //not needed with cookies , token: null }
+      return {...initialState, user: null}
     }
 
     if (action.type === UPDATE_USER_BEGIN) {
@@ -98,7 +101,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         isLoading: false,
-        token: action.payload.token,
+        //not needed with cookies
+        //token: action.payload.token,
         user: action.payload.user,
         showAlert: true,
         alertType: 'success',
