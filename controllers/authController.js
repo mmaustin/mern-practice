@@ -25,8 +25,9 @@ const register = async (req, res) => {
       user: {
         name: user.name,
         email: user.email
-      },
-      token
+      }
+      //No longer sending token back in the response
+      //token
     })
 }
 
@@ -49,7 +50,8 @@ const login = async (req, res) => {
   //method for using Cookies
   attachCookies({res, token});
 
-  res.status(StatusCodes.OK).json({ user, token})
+  //Removed token from the response json({user, token})
+  res.status(StatusCodes.OK).json({ user})
 }
 
 const updateUser = async (req, res) => {
@@ -68,7 +70,8 @@ const updateUser = async (req, res) => {
   //method for using Cookies
   attachCookies({res, token});  
 
-  res.status(StatusCodes.OK).json({ user, token})
+  //Removed token from the response json({user, token})
+  res.status(StatusCodes.OK).json({ user})
 }
 
 export {register, login, updateUser};
