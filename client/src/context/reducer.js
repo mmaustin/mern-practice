@@ -92,7 +92,7 @@ const reducer = (state, action) => {
     
     if(action.type === LOGOUT_USER){
       //not needed with cookies , token: null }
-      return {...initialState, user: null}
+      return {...initialState, user: null, userLoading: false}
     }
 
     if (action.type === UPDATE_USER_BEGIN) {
@@ -216,6 +216,14 @@ const reducer = (state, action) => {
         alertType: 'danger',
         alertText: action.payload.msg,
       }
+    }
+    //Reducer logic for cookies upon refresh
+    if(action.type === GET_CURRENT_USER_BEGIN){
+      return {...state, userLodaing: true, showAlert: false};
+    }
+
+    if(action.type === GET_CURRENT_USER_SUCCESS){
+      return {...state, userLodaing: false, user: action.payload.user}
     }
 
     throw new Error(`no such action : ${action.type}`)   
