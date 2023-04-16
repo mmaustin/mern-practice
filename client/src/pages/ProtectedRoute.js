@@ -1,12 +1,12 @@
 
 import { Navigate } from 'react-router-dom'
 import { useAppContext } from '../context/appContext'
-
+//import Loading from '../components/Loading';
 
 const ProtectedRoute = ({ children }) => {
   const { user, userLoading } = useAppContext();
 
-  if(userLoading) return <h3>waiting</h3>
+  if(userLoading) return children
   if (!user) {
     return <Navigate to='/landing' />
   }
