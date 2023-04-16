@@ -1,4 +1,4 @@
-import React, {useReducer, useContext } from 'react';
+import React, {useReducer, useContext, useEffect } from 'react';
 import reducer from './reducer';
 import axios from 'axios';
 
@@ -26,7 +26,9 @@ import {
     DELETE_EVENT_BEGIN,
     EDIT_EVENT_BEGIN,
     EDIT_EVENT_SUCCESS,
-    EDIT_EVENT_ERROR,     
+    EDIT_EVENT_ERROR,
+    GET_CURRENT_USER_BEGIN,
+    GET_CURRENT_USER_SUCCESS,     
 } from './actions'
 
 //No longer needed for cookie auth
@@ -38,6 +40,8 @@ const initialState ={
     showAlert: false,
     alertText: '',
     alertType: '',
+    //Cookie code needed to get user on refresh
+    userLoading: true,
     //Code needed for storing token in local state, now we just have user: null
     // user: user ? JSON.parse(user) : null,
     // token: token,
@@ -271,6 +275,26 @@ const AppProvider = ({children}) => {
           //logoutUser()
         }
       }
+
+      const getCurrentUser = async () => {
+        dispatch({type: GET_CURRENT_USER_BEGIN})
+        try {
+          const {data} = await authFetch('/auth/getCurrentUser')
+          const {user} = data;
+          dispatch({
+            type: GET_CURRENT_USER_SUCCESS,
+            payload: {user}
+          })
+        } catch (error) {
+          if(error.response.status === 401) return;
+          logoutUser();
+        }
+      }
+
+        useEffect(() => {
+          getCurrentUser()
+        }, []) 
+      
 
     return(
         <AppContext.Provider value={{...state, displayAlert, clearAlert, registerUser, loginUser, logoutUser, updateUser, handleChange, clearValues, createEvent, getJobs, setEditEvent, deleteEvent, editEvent}}>{children}</AppContext.Provider>

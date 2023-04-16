@@ -23,7 +23,8 @@ import {
     EDIT_EVENT_BEGIN,
     EDIT_EVENT_SUCCESS,
     EDIT_EVENT_ERROR,   
-
+    GET_CURRENT_USER_BEGIN,
+    GET_CURRENT_USER_SUCCESS,
 } from './actions'
 import { initialState } from './appContext'
 
